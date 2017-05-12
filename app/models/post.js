@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 // define the schema for our post model
 var postSchema = mongoose.Schema({
 
-    createdOn: {type: Date, default: Date.now},    
+    createdOn: {
+    	type: Number, 
+    	default: function() { return new Date().getTime(); }
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
