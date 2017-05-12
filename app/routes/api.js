@@ -109,7 +109,8 @@ module.exports = function(app) {
             
             userId: req.session.user._id,
             author: req.body.author,
-            text: req.body.text,
+            title: req.body.title,
+            content: req.body.content,
             tags: req.body.tags || []
         });
 

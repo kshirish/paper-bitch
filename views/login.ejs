@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html ng-app="paperbitch">
+<html>
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="writing">
+    <meta name="description" content="paperbitch">
     <meta name="author" content="kshirish">
 
-    <title>Paper Bitch - Login</title>    
+    <title>Paperbitch - Login</title>    
     
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/login.min.css">
-    <style>
-        [ng\:cloak],
-        [ng-cloak],
-        [data-ng-cloak],
-        [x-ng-cloak],
-        .ng-cloak,
-        .x-ng-cloak {
-          display: none !important;
-        }
-    </style>
 </head>
 
-<body ng-controller="AuthenticationController" ng-cloak>
+<body>
 
     <div class="container">
         <div class="info">
@@ -39,7 +29,7 @@
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/>
         </div>
         
-        <form class="register-form" name="signupForm" ng-submit="signupSubmit(signupForm)" novalidate>
+        <form class="register-form" name="signupForm">
             <input type="text" ng-model="signup.fname" placeholder="First name" required/>
             <input type="text" ng-model="signup.lname" placeholder="Last name" required/>
             <input type="text" ng-model="signup.username" placeholder="Username" required/>
@@ -48,7 +38,7 @@
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
 
-        <form class="login-form" name="loginForm" ng-submit="loginSubmit(loginForm)" novalidate>
+        <form class="login-form" name="loginForm">
             <input type="text" ng-model="login.username" placeholder="Username" required/>
             <input type="password" ng-model="login.password" placeholder="Password" required/>
             <button>login</button>
@@ -56,65 +46,6 @@
         </form>
     </div>    
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <script>
-        
-        angular.module('paperbitch', [])
-            .service('ApiService', [function($http) {
-                
-                this.createUser = function(obj) {
-                    return $http.post('/api/v1/users', JSON.stringify(obj));   
-                };
-
-                this.authenticate = function(obj) {                                        
-                    return $http.post('/api/v1/login', JSON.stringify(obj));   
-                };
-            }])
-            .directive('authenticationForm', [function() {
-                
-                return {
-                    restrict: 'A',
-                    link: function(scope, element, attrs) {                
-
-                        scope.signup = {};
-                        scope.login = {};
-
-                        $('.message a').click(function() {
-
-                            scope.signup = {};
-                            scope.login = {};
-
-                            $('form').animate({height: 'toggle', opacity: 'toggle'}, 'slow');
-                        });
-                    }
-                }
-            }])
-            .controller('AuthenticationController', [function($scope, ApiService) {
-
-                $scope.loginSubmit = function(form) {
-
-                    if(form.$valid) {
-
-                        ApiService.authenticate($scope.login)
-                            .then(function() {
-                                console.log(arguments);
-                            });
-                    }
-                };
-
-                $scope.signupSubmit = function(form) {
-
-                    if(form.$valid) {
-                     
-                        ApiService.createUser($scope.signup)
-                            .then(function() {
-                                console.log(arguments);
-                            });   
-                    }
-                };
-
-            }]);
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
 </body>
 </html>

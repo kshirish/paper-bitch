@@ -8,14 +8,23 @@
     <meta name="description" content="paper bitch">
     <meta name="author" content="kshirish">
 
-    <title>Paper Bitch - About</title>
+    <title>Paperbitch - About</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="/css/global.min.css" rel="stylesheet">
-
+    <style>
+        [ng\:cloak],
+        [ng-cloak],
+        [data-ng-cl3oak],
+        [x-ng-cloak],
+        .ng-cloak,
+        .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -74,7 +83,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
+                <p><%= user.about %></p>
             </div>
         </div>
     </div>
@@ -117,11 +126,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/global.min.js"></script>
-
 </body>
 
 </html>

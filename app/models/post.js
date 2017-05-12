@@ -9,7 +9,8 @@ var postSchema = mongoose.Schema({
         ref: 'User'
     },
     author: String,
-    text: String,
+    title: String,
+    content: String,
     tags: [String]
 });
 
