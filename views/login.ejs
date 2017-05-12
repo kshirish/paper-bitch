@@ -23,29 +23,34 @@
         </div>
     </div>
 
-    <div class="form" authentication-form>
+    <div class="form">
         
         <div class="thumbnail">
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/>
         </div>
         
         <form class="register-form" name="signupForm">
-            <input type="text" ng-model="signup.fname" placeholder="First name" required/>
-            <input type="text" ng-model="signup.lname" placeholder="Last name" required/>
-            <input type="text" ng-model="signup.username" placeholder="Username" required/>
-            <input type="password" ng-model="signup.password" placeholder="Password" required/>            
+            <input type="text" placeholder="First name" required/>
+            <input type="text" placeholder="Last name" required/>
+            <input type="text" placeholder="Username" required/>
+            <input type="password" placeholder="Password" required/>            
             <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
 
         <form class="login-form" name="loginForm">
-            <input type="text" ng-model="login.username" placeholder="Username" required/>
-            <input type="password" ng-model="login.password" placeholder="Password" required/>
+            <input type="text" placeholder="Username" required/>
+            <input type="password" placeholder="Password" required/>
             <button>login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>
     </div>    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>        
+    <script>
+        $('.message a').click(function(){
+           $('form').animate({height: 'toggle', opacity: 'toggle'}, 'slow');
+        });
+    </script>
 </body>
 </html>

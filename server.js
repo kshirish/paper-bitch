@@ -1,5 +1,4 @@
 var express  = require('express');
-var router   = express.Router();
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
@@ -34,12 +33,8 @@ app.use(session({
 // static files
 app.use(express.static(`${__dirname}/assets`));
 
-// route's namespace
-app.use('/api/v1', router);
-
 // routes 
-require('./app/routes/api.js')(router); // load our api routes and pass in router
-require('./app/routes/page.js')(app); // load our page routes and pass in app
+require('./app/routes.js')(app); // load our routes and pass in app
 
 // launch 
 app.listen(port);
