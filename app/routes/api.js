@@ -1,6 +1,6 @@
-var User = require('./models/user');
-var Post = require('./models/post');
-var Helpers = require('./helpers')();
+var User = require('../models/user');
+var Post = require('../models/post');
+var Helpers = require('../helpers')();
 
 module.exports = function(app) {
 

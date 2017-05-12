@@ -72,32 +72,32 @@ module.exports = function(app) {
     });    
 
     // homepage
-    app.get('/', function(req, res) {
+    app.get('/', isLoggedIn, function(req, res) {
         res.render('index.ejs', {user: req.session.user});
     });
 
     // about
-    app.get('/about', function(req, res) {
+    app.get('/about', isLoggedIn, function(req, res) {
         res.render('about.ejs', {user: req.session.user});
     });
 
     // edit profile
-    app.get('/about/edit', function(req, res) {
+    app.get('/about/edit', isLoggedIn, function(req, res) {
         res.render('edit-profile.ejs', {user: req.session.user});
     });
 
     // contact
-    app.get('/contact', function(req, res) {
+    app.get('/contact', isLoggedIn, function(req, res) {
         res.render('contact.ejs', {user: req.session.user});
     });
 
     // post
-    app.get('/post/:id', function(req, res) {
+    app.get('/post/:id', isLoggedIn, function(req, res) {
         res.render('post.ejs', {user: req.session.user});
     });
 
     // edit post
-    app.get('/post/:id/edit', function(req, res) {
+    app.get('/post/:id/edit', isLoggedIn, function(req, res) {
         res.render('edit-post.ejs', {user: req.session.user});
     });
 
