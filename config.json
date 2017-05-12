@@ -1,0 +1,8 @@
+{
+	"production": {
+		"url" : "mongodb://paperbitch:paperbitch@ds137271.mlab.com:37271/paperbitch"
+	},
+	"local": {
+		"url" : "mongodb://localhost/paperbitch"
+	}	
+}
