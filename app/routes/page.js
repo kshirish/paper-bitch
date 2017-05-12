@@ -30,12 +30,6 @@ module.exports = function(app) {
         });
     }
 
-    // show the home page
-    app.get('/', isLoggedIn, function(req, res) {
-
-        res.render('index.ejs', {user: req.session.user});
-    });
-
     // login
     app.get('/login', function(req, res) {
     
@@ -58,7 +52,6 @@ module.exports = function(app) {
                 res.redirect('/');
             }                             
         });
-
     });
 
     app.post('/login', function(req, res) {
@@ -76,8 +69,37 @@ module.exports = function(app) {
 				res.redirect('/');
 			}            
         });
-
     });    
+
+    // homepage
+    app.get('/', function(req, res) {
+        res.render('index.ejs', {user: req.session.user});
+    });
+
+    // about
+    app.get('/about', function(req, res) {
+        res.render('about.ejs', {user: req.session.user});
+    });
+
+    // edit profile
+    app.get('/about/edit', function(req, res) {
+        res.render('edit-profile.ejs', {user: req.session.user});
+    });
+
+    // contact
+    app.get('/contact', function(req, res) {
+        res.render('contact.ejs', {user: req.session.user});
+    });
+
+    // post
+    app.get('/post/:id', function(req, res) {
+        res.render('post.ejs', {user: req.session.user});
+    });
+
+    // edit post
+    app.get('/post/:id/edit', function(req, res) {
+        res.render('edit-post.ejs', {user: req.session.user});
+    });
 
     // 404 
     app.get('*', function(req, res) { 

@@ -31,6 +31,9 @@ app.use(session({
 	store: new MongoStore({ url: configDB[process.env.NODE_ENV || 'local'].url })
 }));
 
+// static files
+app.use(express.static(`${__dirname}/assets`));
+
 // route's namespace
 app.use('/api/v1', router);
 
