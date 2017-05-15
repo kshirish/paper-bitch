@@ -1,6 +1,6 @@
-var User = require('../models/user');
-var Post = require('../models/post');
-var Helpers = require('../helpers')();
+var User = require('./models/user');
+var Post = require('./models/post');
+var Helpers = require('./helpers')();
 
 var base_url = '/api/v1';
 
@@ -64,7 +64,7 @@ module.exports = function(app) {
     app.post(base_url + '/login', function(req, res) {
     
         // trying for automatic login
-        validateLogin(req.body.usertoken, function(response) {
+        validateLogin(req.body.username, req.body.password, function(response) {
 
             if (response.error)                
             
@@ -121,7 +121,7 @@ module.exports = function(app) {
 
     // edit profile
     app.get('/about/edit', isLoggedIn, function(req, res) {
-        res.render('edit-profile.ejs', {user: req.session.user});
+        res.render('edit-profile.ejs', {user: req.session.user});        
     });
 
     // contact
@@ -171,9 +171,9 @@ module.exports = function(app) {
         
         var user = new User({
             
-            fname: req.body.fname,
-            lname: req.body.lname,
+            fullName: req.body.fullName,
             username: req.body.username,
+            tagline: req.body.tagline,
             image: req.body.image,
             about: req.body.about
         });

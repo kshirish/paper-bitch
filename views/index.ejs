@@ -8,11 +8,10 @@
     <meta name="description" content="paperbitch">
     <meta name="author" content="kshirish">
 
-    <title>Paperbitch - Homepage</title>
+    <title>Paper Bitch - Homepage</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="/css/global.min.css" rel="stylesheet">
 </head>
@@ -28,7 +27,7 @@
                     <span class="sr-only">Toggle navigation</span>
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="/">Paper bitch</a>
+                <a class="navbar-brand" href="/">Paper Bitch</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,9 +59,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Paper bitch</h1>
+                        <h1>@<%= user.username %></h1>
                         <hr class="small">
-                        <span class="subheading">What I read</span>
+                        <span class="subheading"><%= user.tagline %></span>
                     </div>
                 </div>
             </div>
@@ -138,13 +137,14 @@
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Paperbitch 2017</p>
+                    <p class="copyright text-muted">Copyright &copy; Paper Bitch 2017</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </body>
 
 </html>

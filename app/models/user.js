@@ -7,12 +7,21 @@ var userSchema = mongoose.Schema({
     createdOn: {
     	type: Number, 
     	default: function() { return new Date().getTime(); }
+    },    
+    username: {
+        type: String,
+        required: true
     },
-    fname: String,
-    lname: String,
-    username: String,
-    password: String,
-    image: String,
+    password: {
+        type: String,
+        required: true
+    },    
+    image: {
+        type: String,
+        default: 'https://www.dreamwallets.com/dist/img/profile.png'
+    },
+    fullName: String,
+    tagline: String,
     about: String
 });
 
