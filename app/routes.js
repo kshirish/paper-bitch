@@ -62,19 +62,15 @@ module.exports = function(app) {
 
     // login api
     app.post(base_url + '/login', function(req, res) {
-    
-        // trying for automatic login
+  
+        // trying for manual login
         validateLogin(req.body.username, req.body.password, function(response) {
 
-            if (response.error)                
-            
-                res.render('login.ejs', response);            
-            
-            else {
-
-                req.session.user = response;
-                res.redirect('/');
-            }            
+            if (response.error)                            
+                res.status(400).json(response);                        
+            else
+                req.session.user = response;                
+                     
         });
     });    
 
@@ -120,7 +116,7 @@ module.exports = function(app) {
     });
 
     // edit profile
-    app.get('/about/edit', isLoggedIn, function(req, res) {
+    app.get('/edit/profile', isLoggedIn, function(req, res) {
         res.render('edit-profile.ejs', {user: req.session.user});        
     });
 
@@ -150,8 +146,13 @@ module.exports = function(app) {
     });
 
     // edit post
-    app.get('/post/:id/edit', isLoggedIn, function(req, res) {
+    app.get('/edit/:id/post', isLoggedIn, function(req, res) {        
         res.render('edit-post.ejs', {user: req.session.user});
+    });
+
+    // create a new post
+    app.get('/new/post', isLoggedIn, function(req, res) {        
+        res.render('new-post.ejs', {user: req.session.user});
     });
 
     // logout
@@ -165,7 +166,7 @@ module.exports = function(app) {
     // User ==============================================================
 
     // create a new user
-    app.post(base_url + '/users', isLoggedIn, function(req, res) {
+    app.post(base_url + '/users', function(req, res) {
         
         // todo : basic validation before adding
         
@@ -184,7 +185,9 @@ module.exports = function(app) {
         user.save()
             .then(function(response) {
                 
-                res.redirect('/');                
+                res.json({
+                    reason: 'User created successfully. Please login to continue.'
+                });                
             })
             .catch(function() {
                 
@@ -211,8 +214,17 @@ module.exports = function(app) {
                     reason: 'Unable to edit the user.'
                 });
             
-            else                
-                res.end();                
+            else  {              
+                
+                // updating the session as well
+                for (var key in req.body) {
+                    req.session.user[key] = req.body[key];
+                }                
+                
+                res.json({
+                    reason: 'User profile got updated successfully.'
+                });
+            }                
         });
     });
 

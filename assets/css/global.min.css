@@ -12,7 +12,7 @@ a,body {
 
 body {
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 14px;
     -webkit-tap-highlight-color: #0085A1;
 }
 
@@ -416,4 +416,8 @@ img::-moz-selection {
 	border: 1px solid #eee;
 	padding: 20px 10px;
 	border-radius: 0;
+}
+
+.alert {
+    display: none;   
 }

@@ -36,15 +36,15 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="/">Home</a>
+                    </li>                    
+                    <li>
+                        <a href="/edit/profile"><i class="fa fa-edit"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="/about">About</a>
+                        <a href="/new/post"><i class="fa fa-pencil"></i> Write</a>
                     </li>
                     <li>
-                        <a href="/edit/profile">Edit Profile</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
+                        <a href="/about"><i class="fa fa-user"></i> About</a>
                     </li>
                 </ul>
             </div>
@@ -73,7 +73,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
+                <div class="alert alert-info"></div>
                 <form name="profileForm">
                     <div class="row control-group">
                         <div class="form-group col-xs-12">
@@ -92,7 +92,7 @@
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12">
-                            <textarea rows="5" name="about" class="form-control" placeholder="About" value="<%= user.about %>" required></textarea>
+                            <textarea rows="5" name="about" class="form-control" placeholder="About" required><%= user.about %></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -145,7 +145,50 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <script>
 
+        $(document).ready(function() {
+
+            var $alert = $('.alert');
+            var $profileForm = $('[name=profileForm]');
+
+            function putJSON(url, data) {
+        
+                return $.ajax({
+                    type: 'PUT',
+                    url: url,
+                    contentType: 'application/json',
+                    data: JSON.stringify(data)
+                });
+            }            
+
+            // handle editing profile
+            $profileForm.on('submit', function(e) {
+
+                e.preventDefault();
+
+                var obj = {};
+                var arr = $(this).serializeArray();
+
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    obj[arr[i].name] = arr[i].value;
+                }
+
+                putJSON('/api/v1/user', obj)
+                    .done(function(response) {
+
+                        $alert.html(response.reason);
+                        $alert.show();
+                    })
+                    .fail(function(response) {
+                        $alert.html(response.responseJSON.reason);
+                        $alert.show();
+                    });
+            });
+
+        })
+        
+    </script>
 </body>
 
 </html>
